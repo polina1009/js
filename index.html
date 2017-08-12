@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="./style/css.css">
+        <script
+                src="https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="spinner">
+            <div class="spinner-img-cont">
+                <img class="spinner__img" src="http://68.media.tumblr.com/695ce9a82c8974ccbbfc7cad40020c62/tumblr_o9c9rnRZNY1qbmm1co1_1280.gif">
+            </div>
+        </div>
+        <div class="product-block"></div>
+        <div class="load-more-block">
+            <button onclick="loadProducts();" class="load-more-block__button">load more</button>
+        </div>
+
+        <script>
+            var spinner = {
+                selector: '.spinner',
+                show: function() {
+                    $(this.selector).toggle();
+                },
+                hide: function() {
+                    $(this.selector).hide();
+                }
+            };
+
+            function appendProduct(prod) {
+                var prodHtml = `
+                                <div class="item-product">
+                                        <div class="img-block"></div>
+                                        <div class="info-block">
+                                            <span class="info-block__title">${prod.title}</span>
+                                            <span class="info-block__description">${prod.description}</span>
+                                            <span class="info-block__cost">$${prod.price}</span>
+                                        </div>
+                                    </div>
+                            `;
+
+                console.log(prodHtml);
+                $('.product-block').append(prodHtml);
+            }
+
+            function appendProducts(prods) {
+                if(prods) {
+                    for(var i=0; i<prods.length; i++) {
+                        appendProduct(prods[i]);
+                    }
+                }
+
+            }
+
+            function loadProducts() {
+                spinner.show();
+                $.ajax({
+                    dataType: "json",
+                    url: "products.json",
+                    success: function(prods) {
+                        appendProducts(prods)
+                        spinner.hide();
+                    }
+                });
+            }
+
+            function init() {
+                loadProducts();
+            }
+
+            init();
+
+
+        </script>
+    </body>
+</html>
