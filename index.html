@@ -24,26 +24,31 @@
             var spinner = {
                 selector: '.spinner',
                 show: function() {
-                    $(this.selector).toggle();
+                    console.log("$$$", this.selector)
+                    $(this.selector).show();
                 },
                 hide: function() {
-                    $(this.selector).hide();
+                    var self = this;
+                    // fake delay
+                    setTimeout(function () {
+                        console.log("###", self.selector)
+                        $(self.selector).hide();
+                    }, 1500);
                 }
             };
 
             function appendProduct(prod) {
                 var prodHtml = `
-                                <div class="item-product">
-                                        <div class="img-block"></div>
-                                        <div class="info-block">
-                                            <span class="info-block__title">${prod.title}</span>
-                                            <span class="info-block__description">${prod.description}</span>
-                                            <span class="info-block__cost">$${prod.price}</span>
-                                        </div>
-                                    </div>
-                            `;
+                    <div class="item-product">
+                        <div class="img-block"></div>
+                        <div class="info-block">
+                            <span class="info-block__title">${prod.title}</span>
+                            <span class="info-block__description">${prod.description}</span>
+                            <span class="info-block__cost">$${prod.price}</span>
+                        </div>
+                    </div>
+                `;
 
-                console.log(prodHtml);
                 $('.product-block').append(prodHtml);
             }
 
