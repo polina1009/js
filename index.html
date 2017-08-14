@@ -24,14 +24,12 @@
             var spinner = {
                 selector: '.spinner',
                 show: function() {
-                    console.log("$$$", this.selector)
                     $(this.selector).show();
                 },
                 hide: function() {
                     var self = this;
                     // fake delay
                     setTimeout(function () {
-                        console.log("###", self.selector)
                         $(self.selector).hide();
                     }, 1500);
                 }
