@@ -1,3 +1,5 @@
-# This is an <h1> tag
+# Frontend test task
 
-На даный объем работы я потратила 5 часов. 
+
+Simple product list with AJAX uploading
+Indents in style/css.css in SASS style. Didn't want to make this app more complicated, so didn't used SASS itself, but I like its indents structure. 
